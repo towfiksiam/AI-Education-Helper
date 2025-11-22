@@ -1,0 +1,783 @@
+{
+  "info": {
+    "name": "AI Education System API",
+    "description": "Comprehensive API test collection for AI-powered education system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health & Status",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "Check if the API is running and healthy"
+          },
+          "response": [
+            {
+              "name": "Health Check - Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/health",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["health"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"service\": \"AI Education System\",\n  \"version\": \"0.1.0\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Root Endpoint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            },
+            "description": "Get welcome message and API information"
+          },
+          "response": [
+            {
+              "name": "Root - Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": [""]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Welcome to AI Education System\",\n  \"version\": \"0.1.0\",\n  \"docs\": \"/docs\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "API Documentation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/docs",
+              "host": ["{{base_url}}"],
+              "path": ["docs"]
+            },
+            "description": "Access interactive API documentation (Swagger UI)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Chat Endpoint",
+      "item": [
+        {
+          "name": "Chat - Basic Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"What is photosynthesis?\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/chat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "chat"]
+            },
+            "description": "Ask a simple question without context"
+          },
+          "response": [
+            {
+              "name": "Chat - Basic Question Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"What is photosynthesis?\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/education/chat",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["api", "education", "chat"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"question\": \"What is photosynthesis?\",\n  \"answer\": \"Photosynthesis is the process by which plants, algae, and some bacteria convert light energy from the sun into chemical energy stored in glucose. This process occurs primarily in the leaves of plants and involves the absorption of carbon dioxide and water, which are then converted into glucose and oxygen. The oxygen is released as a byproduct, while the glucose serves as an energy source for the plant's growth and metabolism.\",\n  \"context\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Chat - Question with Context",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"Explain the light-dependent reactions\",\n  \"context\": \"In the context of photosynthesis, specifically the process that occurs in the thylakoid membranes of chloroplasts\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/chat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "chat"]
+            },
+            "description": "Ask a question with additional context for better answers"
+          },
+          "response": [
+            {
+              "name": "Chat - With Context Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"Explain the light-dependent reactions\",\n  \"context\": \"In the context of photosynthesis, specifically the process that occurs in the thylakoid membranes of chloroplasts\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/education/chat",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["api", "education", "chat"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"question\": \"Explain the light-dependent reactions\",\n  \"answer\": \"The light-dependent reactions are the first stage of photosynthesis that occur in the thylakoid membranes of chloroplasts. During these reactions, light energy is absorbed by chlorophyll and other pigments, which excites electrons to higher energy levels. These energized electrons are then passed through an electron transport chain, which generates ATP and NADPH. Water molecules are split to replace the lost electrons, releasing oxygen as a byproduct. The ATP and NADPH produced are then used in the light-independent reactions (Calvin cycle) to synthesize glucose.\",\n  \"context\": \"In the context of photosynthesis, specifically the process that occurs in the thylakoid membranes of chloroplasts\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Chat - Long Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"Can you explain the complete process of how plants convert sunlight into chemical energy, including all the major steps and the molecules involved?\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/chat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "chat"]
+            },
+            "description": "Test with a longer, more complex question"
+          },
+          "response": []
+        },
+        {
+          "name": "Chat - Empty Question (Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/chat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "chat"]
+            },
+            "description": "Test validation - empty question should fail"
+          },
+          "response": [
+            {
+              "name": "Chat - Empty Question Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/education/chat",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["api", "education", "chat"]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"type\": \"string_too_short\",\n      \"loc\": [\"body\", \"question\"],\n      \"msg\": \"String should have at least 1 character\",\n      \"input\": \"\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Chat - Missing Question Field (Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": \"Some context\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/chat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "chat"]
+            },
+            "description": "Test validation - missing required question field"
+          },
+          "response": [
+            {
+              "name": "Chat - Missing Question Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"context\": \"Some context\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/education/chat",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["api", "education", "chat"]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"type\": \"missing\",\n      \"loc\": [\"body\", \"question\"],\n      \"msg\": \"Field required\",\n      \"input\": {\"context\": \"Some context\"}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Chat - Question Too Long (Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"This is a very long question that exceeds the maximum allowed length of 1000 characters. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/chat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "chat"]
+            },
+            "description": "Test validation - question exceeds max length"
+          },
+          "response": [
+            {
+              "name": "Chat - Question Too Long Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"Very long question...\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/education/chat",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["api", "education", "chat"]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"type\": \"string_too_long\",\n      \"loc\": [\"body\", \"question\"],\n      \"msg\": \"String should have at most 1000 characters\",\n      \"input\": \"Very long question...\"\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Generate Material Endpoint",
+      "item": [
+        {
+          "name": "Generate Material - Basic (Beginner)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topic\": \"Photosynthesis\",\n  \"level\": \"beginner\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/generate-material",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "generate-material"]
+            },
+            "description": "Generate educational material for beginners"
+          },
+          "response": [
+            {
+              "name": "Generate Material - Beginner Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"topic\": \"Photosynthesis\",\n  \"level\": \"beginner\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/education/generate-material",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["api", "education", "generate-material"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"topic\": \"Photosynthesis\",\n  \"level\": \"beginner\",\n  \"study_notes\": \"# Photosynthesis: A Beginner's Guide\\n\\n## What is Photosynthesis?\\nPhotosynthesis is the process by which plants use sunlight to make their own food. It's like a plant's kitchen where it cooks up energy from the sun!\\n\\n## Key Concepts\\n- **Sunlight**: Energy source for the process\\n- **Water**: Absorbed through roots\\n- **Carbon Dioxide**: Taken from the air\\n- **Glucose**: Sugar produced as food\\n- **Oxygen**: Released as a byproduct\\n\\n## The Simple Process\\n1. Plant leaves capture sunlight\\n2. Water from soil is transported to leaves\\n3. Carbon dioxide enters through tiny pores (stomata)\\n4. These ingredients combine to make glucose\\n5. Oxygen is released back into the air\\n\\n## Why is it Important?\\n- Plants use glucose for energy and growth\\n- Oxygen produced is essential for most life on Earth\\n- It's the foundation of most food chains\",\n  \"story_explanation\": \"Imagine a tiny factory inside a plant leaf called a chloroplast. Every sunny day, this factory opens its doors to welcome three special guests: sunlight, water, and carbon dioxide. The sunlight acts like an energetic worker, powering the entire operation. Water arrives through underground pipes (the plant's roots), and carbon dioxide floats in through tiny windows (stomata) on the leaf's surface. Inside the factory, these three ingredients are mixed together in a magical process. The sunlight provides the energy needed to combine them. After a bit of chemical magic, out comes glucose - a delicious sugar that feeds the plant and helps it grow big and strong. As a bonus, oxygen is released as a byproduct, which is perfect for us to breathe! This process happens millions of times every day in plants all around us, making it one of nature's most important factories.\",\n  \"summary\": \"Photosynthesis is the process where plants convert sunlight, water, and carbon dioxide into glucose (food) and oxygen. This process occurs in the chloroplasts of plant cells and is essential for plant growth and survival. The oxygen produced during photosynthesis is released into the atmosphere, making it vital for most life on Earth. Photosynthesis is the foundation of most food chains and ecosystems.\",\n  \"mcqs\": [\n    {\n      \"question\": \"What is the main purpose of photosynthesis?\",\n      \"options\": [\n        \"To produce oxygen only\",\n        \"To convert sunlight into chemical energy (glucose)\",\n        \"To absorb water from soil\",\n        \"To release carbon dioxide\"\n      ],\n      \"correct_answer\": \"To convert sunlight into chemical energy (glucose)\",\n      \"explanation\": \"While photosynthesis does produce oxygen and absorb water, its main purpose is to convert light energy from the sun into chemical energy stored in glucose molecules, which the plant uses for growth and energy.\"\n    },\n    {\n      \"question\": \"Which of the following is NOT a requirement for photosynthesis?\",\n      \"options\": [\n        \"Sunlight\",\n        \"Water\",\n        \"Nitrogen\",\n        \"Carbon dioxide\"\n      ],\n      \"correct_answer\": \"Nitrogen\",\n      \"explanation\": \"Photosynthesis requires sunlight, water, and carbon dioxide. While nitrogen is important for plant growth, it is not directly required for the photosynthesis process itself.\"\n    },\n    {\n      \"question\": \"Where does photosynthesis primarily occur in plant cells?\",\n      \"options\": [\n        \"In the nucleus\",\n        \"In the mitochondria\",\n        \"In the chloroplasts\",\n        \"In the cell membrane\"\n      ],\n      \"correct_answer\": \"In the chloroplasts\",\n      \"explanation\": \"Photosynthesis occurs in the chloroplasts, which are specialized organelles in plant cells that contain chlorophyll and other necessary structures for the photosynthetic process.\"\n    }\n  ],\n  \"short_questions\": [\n    {\n      \"question\": \"What are the three main inputs needed for photosynthesis?\",\n      \"expected_answer\": \"The three main inputs for photosynthesis are sunlight (light energy), water (H2O), and carbon dioxide (CO2). These are combined in the chloroplasts to produce glucose and oxygen.\",\n      \"difficulty\": \"easy\"\n    },\n    {\n      \"question\": \"Explain why photosynthesis is important for life on Earth.\",\n      \"expected_answer\": \"Photosynthesis is important because it produces oxygen, which most living organisms need to breathe. It also produces glucose, which serves as the primary energy source for plants and, indirectly, for all animals that eat plants or other animals. Additionally, photosynthesis forms the base of most food chains and ecosystems.\",\n      \"difficulty\": \"medium\"\n    },\n    {\n      \"question\": \"What happens to the glucose produced during photosynthesis?\",\n      \"expected_answer\": \"The glucose produced during photosynthesis is used by the plant for energy and growth. Some glucose is used immediately through cellular respiration to provide energy for the plant's activities. The rest is stored as starch for later use or converted into other compounds needed for plant structure and function.\",\n      \"difficulty\": \"medium\"\n    }\n  ],\n  \"image_url\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Generate Material - Intermediate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topic\": \"Quantum Mechanics\",\n  \"level\": \"intermediate\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/generate-material",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "generate-material"]
+            },
+            "description": "Generate educational material for intermediate level"
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Material - Advanced",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topic\": \"Quantum Entanglement\",\n  \"level\": \"advanced\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/generate-material",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "generate-material"]
+            },
+            "description": "Generate educational material for advanced level"
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Material - Default Level",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topic\": \"Machine Learning\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/generate-material",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "generate-material"]
+            },
+            "description": "Generate material with default level (intermediate)"
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Material - With Language",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topic\": \"Artificial Intelligence\",\n  \"level\": \"intermediate\",\n  \"language\": \"english\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/generate-material",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "generate-material"]
+            },
+            "description": "Generate material with specified language"
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Material - Empty Topic (Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topic\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/generate-material",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "generate-material"]
+            },
+            "description": "Test validation - empty topic should fail"
+          },
+          "response": [
+            {
+              "name": "Generate Material - Empty Topic Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"topic\": \"\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/education/generate-material",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["api", "education", "generate-material"]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"type\": \"string_too_short\",\n      \"loc\": [\"body\", \"topic\"],\n      \"msg\": \"String should have at least 1 character\",\n      \"input\": \"\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Generate Material - Missing Topic (Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"level\": \"intermediate\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/generate-material",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "generate-material"]
+            },
+            "description": "Test validation - missing required topic field"
+          },
+          "response": [
+            {
+              "name": "Generate Material - Missing Topic Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"level\": \"intermediate\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/education/generate-material",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["api", "education", "generate-material"]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"type\": \"missing\",\n      \"loc\": [\"body\", \"topic\"],\n      \"msg\": \"Field required\",\n      \"input\": {\"level\": \"intermediate\"}\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Generate Material - Topic Too Long (Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"topic\": \"This is an extremely long topic that exceeds the maximum allowed length of 500 characters. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/education/generate-material",
+              "host": ["{{base_url}}"],
+              "path": ["api", "education", "generate-material"]
+            },
+            "description": "Test validation - topic exceeds max length"
+          },
+          "response": [
+            {
+              "name": "Generate Material - Topic Too Long Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"topic\": \"Very long topic...\"\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8000/api/education/generate-material",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["api", "education", "generate-material"]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"type\": \"string_too_long\",\n      \"loc\": [\"body\", \"topic\"],\n      \"msg\": \"String should have at most 500 characters\",\n      \"input\": \"Very long topic...\"\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "API v1 Health",
+      "item": [
+        {
+          "name": "API v1 Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/health",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "health"]
+            },
+            "description": "Check health status of API v1"
+          },
+          "response": [
+            {
+              "name": "API v1 Health - Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8000/api/v1/health",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "8000",
+                  "path": ["api", "v1", "health"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"service\": \"AI Education System\",\n  \"version\": \"0.1.0\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    }
+  ]
+}
